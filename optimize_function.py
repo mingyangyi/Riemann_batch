@@ -52,10 +52,10 @@ def _apply_dense_on_grassmann_with_noise(grad_clip,grad, var, learning_rate, tim
 
     b=1/torch.square(times+1)
 
-    noise = variance * torch.randn(var.size()[0])
+    noise = variance * gutils.grassmann_project(var,torch.randn(var.size()[0]))
 
     if grad_clip==None:
-        h=-learning_rate*(a*g+b*noise)
+        h=-learning_rate*(a*g+b*gutils.noise)
     else:
         h = -learning_rate * (a * g + b * noise)
         h=gutils.clip_by_norm(h,grad_clip)
@@ -70,7 +70,7 @@ def _apply_dense_on_oblique_with_noise(grad_clip,grad, var,learning_rate,times, 
     a=1.0
     b = 1 / torch.square(times+1)
 
-    noise = variance * torch.randn(var.size()[0])
+    noise = variance * gutils.oblique_project(var, torch.randn(var.size()[0]))
 
     if grad_clip==None:
         h = -1*learning_rate * (a * g + b * noise)
