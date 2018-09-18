@@ -320,7 +320,7 @@ def main():
             if epoch in epoch_step:
                 power = sum(epoch >= i for i in epoch_step)
                 lr = opt.lr * pow(opt.lr_decay_ratio, power)
-                lrg = opt.lrg * pow(opt.lr_decay_ratio, power)
+                lrm = opt.lrm * pow(opt.lr_decay_ratio, power)
                 times = opt.times + 1
                 state['optimizer'] = create_optimizer(opt, lr, lrg, times)
 
@@ -453,10 +453,10 @@ def main():
                 state['optimizer'] = create_optimizer(opt, lr)
 
 #            lr = state['optimizer'].param_groups[0]['lr']
-#            lrg = state['optimizer'].param_groups[0]['lrg']
+#            lrm = state['optimizer'].param_groups[0]['lrm']
 #            state['optimizer'] = create_optimizer(opt, 
 #                                          lr * opt.lr_decay_ratio, 
-#                                          lrg * opt.lr_decay_ratio)
+#                                          lrm * opt.lr_decay_ratio)
 
         def on_end_epoch(state):
 
