@@ -168,7 +168,7 @@ def main():
                 param_o_e1.append(value)
 
         def create_optimizer(opt, lr, lrm, times):
-            print('creating optimizer with lr = ', lr)
+            print('creating optimizer with lr = ', lrm)
 
             if opt.optim_method == 'SGDM':
                 dict_total = {'params': params_total, 'lr': lrm, 'manifold' : 'True', 'grad_clip': opt.grad_clip}
